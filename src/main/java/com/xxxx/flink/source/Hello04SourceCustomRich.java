@@ -105,9 +105,6 @@ class MySource02 extends RichParallelSourceFunction<String> {
 
 
 
-
-
-
     @Override
     public void run(SourceContext<String> ctx) throws Exception {
         //运行方法，实现逻辑的方法
@@ -129,6 +126,7 @@ class MySource02 extends RichParallelSourceFunction<String> {
         //取消方法
 
     }
+
 }
 
 
