@@ -1,7 +1,11 @@
 package com.xxxx.flink.util;
 
+import org.apache.flink.api.common.serialization.SimpleStringSchema;
+import org.apache.flink.connector.kafka.source.KafkaSource;
+import org.apache.flink.connector.kafka.source.enumerator.initializer.OffsetsInitializer;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.common.internals.Topic;
 
 import java.util.Properties;
 
@@ -49,6 +53,26 @@ public class KafkaUtil {
         //刷出消息
         kafkaProducer.flush();
     }
+
+    /**
+     * 获取flink的kafka source
+     * @param topic
+     * @param groupId
+     * @return
+     */
+    public static KafkaSource<String> getKafka(String topic,String groupId){
+        //1.source
+        KafkaSource<String> source = KafkaSource.<String>builder()//得到一个kafka配置对象
+                .setBootstrapServers("node01:9092,node02:node03:9092")
+                .setTopics(topic)
+                .setGroupId(groupId)
+                .setStartingOffsets(OffsetsInitializer.earliest())//从最早开始消费
+                .setValueOnlyDeserializer(new SimpleStringSchema())
+                .build();
+        return source;
+    }
+
+
 
 
 

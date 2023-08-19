@@ -84,6 +84,12 @@
       <artifactId>flink-statebackend-rocksdb</artifactId>
       <version>${flink.version}</version>
     </dependency>
+    <!-- Hadoop Client -->
+    <dependency>
+      <groupId>org.apache.hadoop</groupId>
+      <artifactId>hadoop-client</artifactId>
+      <version>3.1.2</version>
+    </dependency>
     <!-- 日志系统-->
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
