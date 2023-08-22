@@ -66,7 +66,7 @@ public class KafkaUtil {
                 .setBootstrapServers("node01:9092,node02:node03:9092")
                 .setTopics(topic)
                 .setGroupId(groupId)
-                .setStartingOffsets(OffsetsInitializer.earliest())//从最早开始消费
+                .setStartingOffsets(OffsetsInitializer.latest())//从最早开始消费
                 .setValueOnlyDeserializer(new SimpleStringSchema())
                 .build();
         return source;

@@ -44,7 +44,6 @@ public class Hello03StateKeyed {
         }, Types.TUPLE(Types.STRING,Types.INT) ).keyBy(tuple -> tuple.f0)
                 .reduce(new MyKeyedStateFunction())
                 .print();
-
         //执行
         env.execute();
     }

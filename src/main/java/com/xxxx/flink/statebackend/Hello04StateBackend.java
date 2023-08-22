@@ -28,9 +28,14 @@ public class Hello04StateBackend {
     public static void main(String[] args) throws Exception {
 
         Configuration configuration = new Configuration();
-        configuration.setString("execution.savepoint.path" ,"D:\\idea_java_projects\\dsj\\flume\\flink\\ckpt\\989975e220f435e8fc664cc0187c6ef5\\chk-31");
-        //运行环境
-        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        //读取的文件EmbeddedRocksDBStateBackend
+
+//        configuration.setString("execution.checkpointing.mode" ,  "EXACTLY_ONCE");
+//        configuration.setString("execution.savepoint.path" ,"D:\\idea_java_projects\\dsj\\flume\\flink\\ckpt\\989975e220f435e8fc664cc0187c6ef5\\chk-31");
+        configuration.setString("execution.savepoint.path" ,"hdfs://node01:8020/flink/checkpoints/079d6231c9bfe3f04bfb4da7362c1153/chk-19");
+
+// 运行环境
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment(configuration);
         env.setParallelism(2);
         //开启检查点，5秒保存一次
         env.enableCheckpointing(5000);
