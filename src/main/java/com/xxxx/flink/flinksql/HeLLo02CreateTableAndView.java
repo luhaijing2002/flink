@@ -39,7 +39,8 @@ public class HeLLo02CreateTableAndView {
                 .select(Expressions.$("empno"), Expressions.$("ename").as("job"))
                 .execute()
                 .print();
-
+        //临时表
+//        tableEnvironment.createTemporaryTable();
         //创建视图：方法一：
         tableEnvironment.createTemporaryView("emp", table1);
         tableEnvironment.sqlQuery("select * from emp").execute().print();
